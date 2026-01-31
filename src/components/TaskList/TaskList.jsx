@@ -1,49 +1,26 @@
 import React from 'react'
+import AcceptTask from './AcceptTask'
+import NewTask from './NewTask'
+import FailedTask from './FailedTask'
+import CompleteTask from './CompleteTask'
 
-const TaskList = () => {
+const TaskList = ({data}) => {
   return (
     <div id='tasklist' className='h-[55%] overflow-x-auto w-full py-5 flex item-center justify-start gap-5 flex-nowrap m-10'>
-        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-red-400 rounded-xl'>
-            <div className='flex justify-between px-3 py-1 rounded items-center'>
-                <h3 className='bg-red-900 text-small px-4 py-1 rounded' >high</h3>
-                <h4 className='text-sm'> 27 jan 2026</h4>
-            </div>
-            <h2 className='mt-5 text-2xl font-semibold'>Make a youtube video</h2>
-            <p className='text-small mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et quod sunt laudantium beatae eaque veniam?</p>
-        </div>
-
-        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-green-400 rounded-xl'>
-            <div className='flex justify-between px-3 py-1 rounded items-center'>
-                <h3 className='bg-red-900 text-small px-4 py-1 rounded' >high</h3>
-                <h4 className='text-sm'> 27 jan 2026</h4>
-            </div>
-            <h2 className='mt-5 text-2xl font-semibold'>Make a youtube video</h2>
-            <p className='text-small mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et quod sunt laudantium beatae eaque veniam?</p>
-        </div>
-        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-blue-400 rounded-xl'>
-            <div className='flex justify-between px-3 py-1 rounded items-center'>
-                <h3 className='bg-red-900 text-small px-4 py-1 rounded' >high</h3>
-                <h4 className='text-sm'> 27 jan 2026</h4>
-            </div>
-            <h2 className='mt-5 text-2xl font-semibold'>Make a youtube video</h2>
-            <p className='text-small mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et quod sunt laudantium beatae eaque veniam?</p>
-        </div>
-        <div className='flex-shrink-0 h-full w-[300px] p-5 bg-yellow-400 rounded-xl'>
-            <div className='flex justify-between px-3 py-1 rounded items-center'>
-                <h3 className='bg-red-900 text-small px-4 py-1 rounded' >high</h3>
-                <h4 className='text-sm'> 27 jan 2026</h4>
-            </div>
-            <h2 className='mt-5 text-2xl font-semibold'>Make a youtube video</h2>
-            <p className='text-small mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et quod sunt laudantium beatae eaque veniam?</p>
-        </div>
-            <div className='flex-shrink-0 h-full w-[300px] p-5 bg-pink-400 rounded-xl'>
-            <div className='flex justify-between px-3 py-1 rounded items-center'>
-                <h3 className='bg-red-900 text-small px-4 py-1 rounded' >high</h3>
-                <h4 className='text-sm'> 27 jan 2026</h4>
-            </div>
-            <h2 className='mt-5 text-2xl font-semibold'>Make a youtube video</h2>
-            <p className='text-small mt-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et quod sunt laudantium beatae eaque veniam?</p>
-        </div>
+        {data.tasks.map((elem, idx)=>{
+           if(elem.active){
+            return <AcceptTask  key={idx} data={elem} />
+           }
+           if(elem.newTask){
+            return <newTask key={idx} data={elem}/>
+           }
+           if(elem.completed){
+            return <CompleteTask key={idx} data={elem} />
+           }
+           if(elem.FailedTask){
+            return <FailedTask key={idx} data={elem}/>
+           }
+        })}
     </div>
   )
 }
